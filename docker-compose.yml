@@ -1,0 +1,22 @@
+version: '2'
+services:
+  serverless:
+    build:
+       context: .
+       dockerfile: docker/Dockerfile-serverless
+    environment:
+      - ENV=$ENV
+      - TAG=$TAG
+    env_file:
+     - .env
+    volumes:
+     - .:/root
+  aws:
+    image: garland/aws-cli-docker
+    environment:
+      - ENV=$ENV
+      - TAG=$TAG
+    env_file:
+     - .env
+    volumes:
+     - .:/root
